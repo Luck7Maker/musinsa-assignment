@@ -1,0 +1,5 @@
+musinsa:
+  api-docs:
+    enabled: false  # /v3/api-docs 비활성화
+    swagger-ui:
+      enabled: false  # Swagger UI 비활성화

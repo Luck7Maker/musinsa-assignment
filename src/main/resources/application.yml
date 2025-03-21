@@ -1,0 +1,46 @@
+spring:
+  profiles:
+    include:
+      - local
+      - h2
+  application:
+    name: musinsa-assignment
+
+  datasource:
+    driver-class-name: ${musinsa.datasource.driver-class-name}
+    url: ${musinsa.datasource.url}
+    username: ${musinsa.datasource.username}
+    password: ${musinsa.datasource.password}
+
+
+  # JPA ??
+  jpa:
+    database-platform: ${musinsa.jpa.database-platform}
+    hibernate:
+      ddl-auto: ${musinsa.jpa.hibernate.ddl-auto}        # DB ??? ?? (none, create, create-drop, update, validate)
+    properties:
+      hibernate:
+        dialect: ${musinsa.jpa.properties.hibernate.dialect}
+        format_sql: ${musinsa.jpa.properties.hibernate.format_sql}
+        show_sql: ${musinsa.jpa.properties.hibernate.show_sql}
+
+springdoc:
+  swagger-ui:
+    config-url: /v3/api-docs/swagger-config
+    use-root-path: true
+    disable-swagger-default-url: true
+    url: /v3/api-docs
+    path: /swagger-ui.html
+  paths-to-match:
+    - /v1/**
+  api-docs:
+    enabled: ${musinsa.api-docs.enabled}  # prod ?? ??? /v3/api-docs ????
+    swagger-ui:
+      enabled: ${musinsa.api-docs.swagger-ui.enabled}  # prod ?? ??? Swagger UI ????
+
+
+
+logging:
+  level.org.hibernate:
+    SQL: DEBUG
+    orm.jdbc.bind: TRACE

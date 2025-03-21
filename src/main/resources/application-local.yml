@@ -1,0 +1,6 @@
+# local, dev 에서만 swagger 활성화.
+musinsa:
+  api-docs:
+    enabled: true  # /v3/api-docs 비활성화
+    swagger-ui:
+      enabled: true  # Swagger UI 비활성화

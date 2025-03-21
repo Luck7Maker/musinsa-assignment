@@ -1,0 +1,119 @@
+[
+  {
+    "brandName": "A",
+    "productCategories": [
+      { "productCategory": "top", "productPrice": 11200 },
+      { "productCategory": "outer", "productPrice": 5500 },
+      { "productCategory": "bottom", "productPrice": 4200 },
+      { "productCategory": "sneakers", "productPrice": 9000 },
+      { "productCategory": "bag", "productPrice": 2000 },
+      { "productCategory": "cap", "productPrice": 1700 },
+      { "productCategory": "socks", "productPrice": 1800 },
+      { "productCategory": "accessory", "productPrice": 2300 }
+    ]
+  },
+  {
+    "brandName": "B",
+    "productCategories": [
+      { "productCategory": "top", "productPrice": 10500 },
+      { "productCategory": "outer", "productPrice": 5900 },
+      { "productCategory": "bottom", "productPrice": 3800 },
+      { "productCategory": "sneakers", "productPrice": 9100 },
+      { "productCategory": "bag", "productPrice": 2100 },
+      { "productCategory": "cap", "productPrice": 2000 },
+      { "productCategory": "socks", "productPrice": 2000 },
+      { "productCategory": "accessory", "productPrice": 2200 }
+    ]
+  },
+  {
+    "brandName": "C",
+    "productCategories": [
+      { "productCategory": "top", "productPrice": 10000 },
+      { "productCategory": "outer", "productPrice": 6200 },
+      { "productCategory": "bottom", "productPrice": 3300 },
+      { "productCategory": "sneakers", "productPrice": 9200 },
+      { "productCategory": "bag", "productPrice": 2200 },
+      { "productCategory": "cap", "productPrice": 1900 },
+      { "productCategory": "socks", "productPrice": 2200 },
+      { "productCategory": "accessory", "productPrice": 2100 }
+    ]
+  },
+  {
+    "brandName": "D",
+    "productCategories": [
+      { "productCategory": "top", "productPrice": 10100 },
+      { "productCategory": "outer", "productPrice": 5100 },
+      { "productCategory": "bottom", "productPrice": 3000 },
+      { "productCategory": "sneakers", "productPrice": 9500 },
+      { "productCategory": "bag", "productPrice": 2500 },
+      { "productCategory": "cap", "productPrice": 1500 },
+      { "productCategory": "socks", "productPrice": 2400 },
+      { "productCategory": "accessory", "productPrice": 2000 }
+    ]
+  },
+  {
+    "brandName": "E",
+    "productCategories": [
+      { "productCategory": "top", "productPrice": 10700 },
+      { "productCategory": "outer", "productPrice": 5000 },
+      { "productCategory": "bottom", "productPrice": 3800 },
+      { "productCategory": "sneakers", "productPrice": 9900 },
+      { "productCategory": "bag", "productPrice": 2300 },
+      { "productCategory": "cap", "productPrice": 1800 },
+      { "productCategory": "socks", "productPrice": 2100 },
+      { "productCategory": "accessory", "productPrice": 2100 }
+    ]
+  },
+  {
+    "brandName": "F",
+    "productCategories": [
+      { "productCategory": "top", "productPrice": 11200 },
+      { "productCategory": "outer", "productPrice": 7200 },
+      { "productCategory": "bottom", "productPrice": 4000 },
+      { "productCategory": "sneakers", "productPrice": 9300 },
+      { "productCategory": "bag", "productPrice": 2100 },
+      { "productCategory": "cap", "productPrice": 1600 },
+      { "productCategory": "socks", "productPrice": 2300 },
+      { "productCategory": "accessory", "productPrice": 1900 }
+    ]
+  },
+  {
+    "brandName": "G",
+    "productCategories": [
+      { "productCategory": "top", "productPrice": 10500 },
+      { "productCategory": "outer", "productPrice": 5800 },
+      { "productCategory": "bottom", "productPrice": 3900 },
+      { "productCategory": "sneakers", "productPrice": 9000 },
+      { "productCategory": "bag", "productPrice": 2200 },
+      { "productCategory": "cap", "productPrice": 1700 },
+      { "productCategory": "socks", "productPrice": 2100 },
+      { "productCategory": "accessory", "productPrice": 2000 }
+    ]
+  },
+  {
+    "brandName": "H",
+    "productCategories": [
+      { "productCategory": "top", "productPrice": 10800 },
+      { "productCategory": "outer", "productPrice": 6300 },
+      { "productCategory": "bottom", "productPrice": 3100 },
+      { "productCategory": "sneakers", "productPrice": 9700 },
+      { "productCategory": "bag", "productPrice": 2100 },
+      { "productCategory": "cap", "productPrice": 1600 },
+      { "productCategory": "socks", "productPrice": 2000 },
+      { "productCategory": "accessory", "productPrice": 2000 }
+    ]
+  },
+  {
+    "brandName": "I",
+    "productCategories": [
+      { "productCategory": "top", "productPrice": 11400 },
+      { "productCategory": "outer", "productPrice": 6700 },
+      { "productCategory": "bottom", "productPrice": 3200 },
+      { "productCategory": "sneakers", "productPrice": 9500 },
+      { "productCategory": "bag", "productPrice": 2400 },
+      { "productCategory": "cap", "productPrice": 1700 },
+      { "productCategory": "socks", "productPrice": 1700 },
+      { "productCategory": "accessory", "productPrice": 2400 }
+    ]
+  }
+]

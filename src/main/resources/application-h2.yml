@@ -1,0 +1,26 @@
+musinsa:
+  # H2 Database
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: 'jdbc:h2:mem:testdb'   # H2 DB (In-Memory Mode)
+    username: sa        # H2 DB ID
+    password:           # H2 DB PW
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create        # DB 초기화 전략 (none, create, create-drop, update, validate)
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: true      # 쿼리 로그 포맷 (정렬)
+        show_sql: true        # 쿼리 로그 출력
+
+# local 환경 H2
+spring:
+  # H2 Console
+  h2:
+    console:
+      enabled: true           # H2 Console
+      path: /h2-console       # H2 Console
+
