@@ -74,14 +74,14 @@ src/
 본 프로젝트는 Layered Architecture를 기반으로 도메인 기능을 구성하였으며,
 Service Layer와 Domain Layer 분리를 위해 각 계층은 의존하지 않고 독립적으로 설계 되었음.
 
-비즈니스 요구사항에 따른 처리는 Service 객체에서 담당하고, 도메인 자체의 핵심 로직은 Aggregate 객체에서 수행하도록 역할을 분리하였습니다.
+비즈니스 요구사항에 따른 처리는 Service 객체에서 담당하고, 도메인 자체의 핵심 로직은 Aggregate 객체에서 수행하도록 역할을 분리 하였음.
 
 계층 간 의존관계는 Controller → Service  → Persistence 방향으로 제한 하되 ,레이어 간의 Visibility는 
 요구사항 구현의 구체성에 따라 의존 관계의 역순 으로 구성 하였음.
 또한 계층간 요구사항은 DTO를 통해 명세화 하여, 의존성 역전 원칙을 준수 하였음.
 
 JPA Entity는 Domain Layer에 위치하며, 복잡한 정보성 조회(예: Join 쿼리 등)는 QueryDSL을 통해 구현함.
-또한 영속성 관련 처리는 Persistence Layer의 Repository에서 전담하고 있습니다.
+또한 영속성 관련 처리는 Persistence Layer의 Repositor로 역할을 분리 하였음.
 
 - **com.sct.musinsa.assignment**: 프로젝트 루트
 - **catalog**: 브랜드 및 상품 카탈로그 관리
@@ -150,20 +150,20 @@ Server 오류 응답(HTTP Status: 500)
 
 ### Admin API(/v1/admin/**)
 [AdminCatalogApiController.kt](src/main/kotlin/com/sct/musinsa/assignment/catalog/controller/v1/AdminCatalogApiController.kt)
-- **#4 카탈로그 관리**
+- **[과제 #4] 카탈로그 관리**
   - 카탈로그(브랜드 + 상품) 등록/수정: [post] /v1/admin/catalog
   - 카탈로그(브랜드 삭제): [delete] /v1/admin/catalog/brand/{brandId}
   - 카탈로그(상품 삭제): [delete] /v1/admin/catalog/product/{productId}
 ### FO 기능 API
 [CatalogApiController.kt](src/main/kotlin/com/sct/musinsa/assignment/catalog/controller/v1/CatalogApiController.kt)
-  - #1 카테고리 별 최저가격 조회: [get] /v1/catalogs/categories/best-price
-  - #2 최저가격에 판매하는 브랜드-카테고리별 상품 조회: [get] /v1/catalogs/brands/best-price
-  - #3 카테고리 이름으로 최저, 최고 가격 브랜드와 상품 조회: [get] /v1/catalogs/categories/{productCategory}"
+  - [과제 #1] 카테고리 별 최저가격 조회: [get] /v1/catalogs/categories/best-price
+  - [과제 #2] 최저가격에 판매하는 브랜드-카테고리별 상품 조회: [get] /v1/catalogs/brands/best-price
+  - [과제 #3] 카테고리 이름으로 최저, 최고 가격 브랜드와 상품 조회: [get] /v1/catalogs/categories/{productCategory}"
 ### API 상세 Spec.
 **API Docs**: Swagger UI 참고
 **Swagger UI**: [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
 ---
-## 📝 Test 방법
+## 📝 과제 검증 방법
 - **구현 기능 1번**
   - ![img.png](questions/img.png)
   - 서비스 통합 테스트: [CatalogServiceIntgTest.kt](src/test/kotlin/com/sct/musinsa/assignment/catalog/service/CatalogServiceIntgTest.kt)
