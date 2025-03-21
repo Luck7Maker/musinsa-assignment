@@ -30,7 +30,7 @@ class CatalogServiceIntgTest : BehaviorSpec() {
 
     init {
 
-        Given("[1.통합 테스트]카테고리 별 최저가격 브랜드와 상품 가격, 총액을 조회할 때") {
+        Given("[1.통합 테스트]카테고리 별 최저가격 브랜드와 상품 가격, 총액을 조회") {
             When("브랜드 카테고리 별 상품 가격 조회에 성공 하면") {
                 val realResponse = catalogService.findBestPriceWithAllCategory()
                 val answer = correctAnswer1()

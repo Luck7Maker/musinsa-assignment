@@ -25,7 +25,7 @@ class CatalogAggregateBehaviorSpecTest :  BehaviorSpec() {
 
 
     init {
-        Given("[단위 테스트] 신규 A 브랜드/상품 등록,수정,삭제") {
+        Given("[4.유닛 테스트] 신규 A 브랜드/상품 등록,수정,삭제") {
             // 테스트 전 실행 (Spring bean 주입 이후 실행됨)
             val originCatalogs = createCatalogSampleData()
             val createdCatalogs = catalogAggregate.upsertCatalog(originCatalogs)
