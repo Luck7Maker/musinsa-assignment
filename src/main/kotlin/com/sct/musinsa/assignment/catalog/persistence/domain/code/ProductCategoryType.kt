@@ -22,12 +22,20 @@ enum class ProductCategoryType (val code: String, val koVal: String) {
 }
 
 @Converter
-class ProductCategoryTypeConverter : AttributeConverter<ProductCategoryType, String> {
+class ProductCategoryTypeConverter : AttributeConverter<ProductCategoryType, String>{
     override fun convertToDatabaseColumn(code: ProductCategoryType): String {
         return code.code
     }
 
     override fun convertToEntityAttribute(dbValue: String): ProductCategoryType? {
         return dbValue.let { ProductCategoryType.findByCode(dbValue) }
+    }
+}
+
+class ProductCategoryTypeMvcConverter : org.springframework.core.convert.converter.Converter<String, ProductCategoryType> {
+    override fun convert(source: String): ProductCategoryType {
+        return ProductCategoryType.entries.firstOrNull {
+            it.name.equals(source, ignoreCase = true) || it.code.equals(source, ignoreCase = true)
+        } ?: throw IllegalArgumentException("Invalid product category: $source")
     }
 }
