@@ -1,10 +1,10 @@
 package com.sct.musinsa.assignment.catalog.controller.payload
 
-import com.sct.musinsa.assignment.catalog.persistence.repository.vo.BrandProductCategoryPriceVo
+import com.sct.musinsa.assignment.catalog.service.dto.BrandProductCategoryPriceDto
 
 
 class BestPriceCatalogResponse(
-    val bestPriceCategories: List<BrandProductCategoryPriceVo>
+    val bestPriceCategories: List<BrandProductCategoryPriceDto>
 ) {
     val totalPrice: Long
         get() {

@@ -1,27 +1,25 @@
 package com.sct.musinsa.assignment.catalog.persistence.repository.dsl
 
 import com.querydsl.jpa.impl.JPAQueryFactory
+import com.sct.musinsa.assignment.catalog.persistence.domain.Catalog
 import com.sct.musinsa.assignment.catalog.persistence.domain.code.ProductCategoryType
 import com.sct.musinsa.assignment.catalog.persistence.domain.entity.QProductEntity.productEntity
 import com.sct.musinsa.assignment.catalog.persistence.domain.entity.QBrandEntity.brandEntity
 import com.sct.musinsa.assignment.catalog.persistence.repository.vo.BrandAllCategoryPriceVo
-import com.sct.musinsa.assignment.catalog.persistence.repository.vo.BrandPriceVo
-import com.sct.musinsa.assignment.catalog.persistence.repository.vo.BrandProductCategoryPriceVo
-import com.sct.musinsa.assignment.catalog.persistence.repository.vo.CategoryPriceVo
 import com.sct.musinsa.assignment.catalog.persistence.repository.vo.QBrandAllCategoryPriceVo
-import com.sct.musinsa.assignment.catalog.persistence.repository.vo.QBrandPriceVo
-import com.sct.musinsa.assignment.catalog.persistence.repository.vo.QBrandProductCategoryPriceVo
-import com.sct.musinsa.assignment.catalog.persistence.repository.vo.QCategoryPriceVo
+import com.sct.musinsa.assignment.catalog.persistence.domain.QCatalog
 import org.springframework.stereotype.Repository
 
 @Repository
 class CategoryDslRepositoryImpl(private val jpaQueryFactory: JPAQueryFactory): CategoryDslRepository {
-    override fun findAllCategoryWithPriceOrderByCategoryAndPrice(): List<BrandProductCategoryPriceVo> {
+    override fun findAllCategoryWithPriceOrderByCategoryAndPrice(): List<Catalog> {
         return jpaQueryFactory
             .select(
-                QBrandProductCategoryPriceVo(
-                    productEntity.productCategory.stringValue(),
+                QCatalog(
+                    productEntity.brand.id,
                     brandEntity.brandName,
+                    productEntity.id,
+                    productEntity.productCategory.stringValue(),
                     productEntity.productPrice
                 )
             )
@@ -45,10 +43,13 @@ class CategoryDslRepositoryImpl(private val jpaQueryFactory: JPAQueryFactory): C
             .orderBy(productEntity.productPrice.sum().asc())
             .fetch()
     }
-    override fun findAllCategoryPriceByBrandId(brandId: Long): List<CategoryPriceVo>{
+    override fun findAllCategoryPriceByBrandId(brandId: Long): List<Catalog>{
         return jpaQueryFactory
             .select(
-                QCategoryPriceVo(
+                QCatalog(
+                    productEntity.brand.id,
+                    brandEntity.brandName,
+                    productEntity.id,
                     productEntity.productCategory.stringValue(),
                     productEntity.productPrice
                 )
@@ -62,11 +63,14 @@ class CategoryDslRepositoryImpl(private val jpaQueryFactory: JPAQueryFactory): C
             .fetch()
     }
 
-    override fun findAllBrandPriceByCategory(productCategoryType: ProductCategoryType): List<BrandPriceVo> {
+    override fun findAllBrandPriceByCategory(productCategoryType: ProductCategoryType): List<Catalog> {
         return jpaQueryFactory
             .select(
-                QBrandPriceVo(
+                QCatalog(
+                    productEntity.brand.id,
                     brandEntity.brandName,
+                    productEntity.id,
+                    productEntity.productCategory.stringValue(),
                     productEntity.productPrice
                 )
             )
@@ -78,4 +82,5 @@ class CategoryDslRepositoryImpl(private val jpaQueryFactory: JPAQueryFactory): C
             .orderBy(productEntity.productPrice.asc())
             .fetch()
     }
+
 }

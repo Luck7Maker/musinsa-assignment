@@ -1,21 +1,13 @@
 package com.sct.musinsa.assignment.catalog.service 
-import com.sct.musinsa.assignment.catalog.controller.payload.AdminCatalogCreateRequest
 import com.sct.musinsa.assignment.catalog.controller.payload.BestPriceBrandForAllCategoriesResponse
 import com.sct.musinsa.assignment.catalog.controller.payload.BestPriceCatalogResponse
 import com.sct.musinsa.assignment.catalog.controller.payload.CheapestAndMostExpensiveBrandByCategoryResponse
-import com.sct.musinsa.assignment.catalog.persistence.domain.CatalogAggregate
 import com.sct.musinsa.assignment.catalog.persistence.domain.code.ProductCategoryType
-import com.sct.musinsa.assignment.catalog.persistence.repository.vo.BrandPriceVo
-import com.sct.musinsa.assignment.catalog.persistence.repository.vo.BrandProductCategoryPriceVo
-import com.sct.musinsa.assignment.catalog.persistence.repository.vo.CategoryPriceVo
-import com.sct.musinsa.assignment.common.http.exception.GlobalException
-import com.sct.musinsa.assignment.common.http.response.Response
-import com.sct.musinsa.assignment.common.util.JsonReader
-import io.kotest.assertions.throwables.shouldThrow
+import com.sct.musinsa.assignment.catalog.service.dto.BrandPriceDto
+import com.sct.musinsa.assignment.catalog.service.dto.BrandProductCategoryPriceDto
+import com.sct.musinsa.assignment.catalog.service.dto.CategoryPriceDto
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
-import io.mockk.every
-import io.mockk.mockk
 import jakarta.transaction.Transactional
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -89,14 +81,14 @@ class CatalogServiceIntgTest : BehaviorSpec() {
 //1번. 정답 객체 생성
 fun correctAnswer1(): BestPriceCatalogResponse {
     val bestPriceList = listOf(
-        BrandProductCategoryPriceVo(category = ProductCategoryType.ACCESSORY.code , brandName = "F", price = 1900),
-        BrandProductCategoryPriceVo(category = ProductCategoryType.BAG.code , brandName = "A", price = 2000),
-        BrandProductCategoryPriceVo(category = ProductCategoryType.BOTTOM.code , brandName = "D", price = 3000),
-        BrandProductCategoryPriceVo(category = ProductCategoryType.CAP.code , brandName = "D", price = 1500),
-        BrandProductCategoryPriceVo(category = ProductCategoryType.OUTER.code , brandName = "E", price = 5000),
-        BrandProductCategoryPriceVo(category = ProductCategoryType.SNEAKERS.code , brandName = "A", price = 9000),
-        BrandProductCategoryPriceVo(category = ProductCategoryType.SOCKS.code , brandName = "I", price = 1700),
-        BrandProductCategoryPriceVo(category = ProductCategoryType.TOP.code , brandName = "C", price = 10000)
+        BrandProductCategoryPriceDto(category = ProductCategoryType.ACCESSORY.code , brandName = "F", price = 1900),
+        BrandProductCategoryPriceDto(category = ProductCategoryType.BAG.code , brandName = "A", price = 2000),
+        BrandProductCategoryPriceDto(category = ProductCategoryType.BOTTOM.code , brandName = "D", price = 3000),
+        BrandProductCategoryPriceDto(category = ProductCategoryType.CAP.code , brandName = "D", price = 1500),
+        BrandProductCategoryPriceDto(category = ProductCategoryType.OUTER.code , brandName = "E", price = 5000),
+        BrandProductCategoryPriceDto(category = ProductCategoryType.SNEAKERS.code , brandName = "A", price = 9000),
+        BrandProductCategoryPriceDto(category = ProductCategoryType.SOCKS.code , brandName = "I", price = 1700),
+        BrandProductCategoryPriceDto(category = ProductCategoryType.TOP.code , brandName = "C", price = 10000)
     )
 
     return BestPriceCatalogResponse(bestPriceCategories = bestPriceList)
@@ -107,35 +99,35 @@ fun correctAnswer2(): BestPriceBrandForAllCategoriesResponse{
     return BestPriceBrandForAllCategoriesResponse(
         brandName = "D",
         bestPriceCategories = listOf(
-            CategoryPriceVo(
+            CategoryPriceDto(
                 category = ProductCategoryType.ACCESSORY.code,
                 price = 2000
             ),
-            CategoryPriceVo(
+            CategoryPriceDto(
                 category = ProductCategoryType.BAG.code,
                 price = 2500
             ),
-            CategoryPriceVo(
+            CategoryPriceDto(
                 category = ProductCategoryType.BOTTOM.code,
                 price = 3000
             ),
-            CategoryPriceVo(
+            CategoryPriceDto(
                 category = ProductCategoryType.CAP.code,
                 price = 1500
             ),
-            CategoryPriceVo(
+            CategoryPriceDto(
                 category = ProductCategoryType.OUTER.code,
                 price = 5100
             ),
-            CategoryPriceVo(
+            CategoryPriceDto(
                 category = ProductCategoryType.SNEAKERS.code,
                 price = 9500
             ),
-            CategoryPriceVo(
+            CategoryPriceDto(
                 category = ProductCategoryType.SOCKS.code,
                 price = 2400
             ),
-            CategoryPriceVo(
+            CategoryPriceDto(
                 category = ProductCategoryType.TOP.code,
                 price = 10100
             )
@@ -148,7 +140,7 @@ fun correctAnswer2(): BestPriceBrandForAllCategoriesResponse{
 fun correctAnswer3(): CheapestAndMostExpensiveBrandByCategoryResponse {
     return CheapestAndMostExpensiveBrandByCategoryResponse(
         category = "상의",
-        cheapest = BrandPriceVo(brandName = "C", price = 10000),
-        expensive = BrandPriceVo(brandName = "I", price = 11400)
+        cheapest = BrandPriceDto(brandName = "C", price = 10000),
+        expensive = BrandPriceDto(brandName = "I", price = 11400)
     )
 }

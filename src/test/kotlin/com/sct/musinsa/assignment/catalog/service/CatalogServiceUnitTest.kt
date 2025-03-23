@@ -1,8 +1,8 @@
 package com.sct.musinsa.assignment.catalog.service 
-import com.sct.musinsa.assignment.catalog.controller.payload.BestPriceCatalogResponse
+import com.sct.musinsa.assignment.catalog.persistence.domain.Catalog
 import com.sct.musinsa.assignment.catalog.persistence.domain.CatalogAggregate
 import com.sct.musinsa.assignment.catalog.persistence.domain.code.ProductCategoryType
-import com.sct.musinsa.assignment.catalog.persistence.repository.vo.BrandProductCategoryPriceVo
+import com.sct.musinsa.assignment.catalog.service.dto.BrandProductCategoryPriceDto
 import com.sct.musinsa.assignment.common.http.exception.GlobalException
 import com.sct.musinsa.assignment.common.http.response.Response
 import io.kotest.assertions.throwables.shouldThrow
@@ -52,96 +52,96 @@ class CatalogServiceUnitTest : BehaviorSpec({
 })
 
 // 문제1 번 Mock DATA
-fun mockEmptyFindAllCategoryWithPriceOrderByCategoryAndPrice():List<BrandProductCategoryPriceVo>{
+fun mockEmptyFindAllCategoryWithPriceOrderByCategoryAndPrice():List<Catalog>{
     return emptyList()
 }
 
-fun mockFindAllCategoryWithPriceOrderByCategoryAndPrice():List<BrandProductCategoryPriceVo> {
+fun mockFindAllCategoryWithPriceOrderByCategoryAndPrice():List<Catalog> {
     val originalList = listOf(
-        BrandProductCategoryPriceVo(brandName="A", category = ProductCategoryType.TOP.code, price = 11200),
-        BrandProductCategoryPriceVo(brandName="A", category = ProductCategoryType.OUTER.code, price = 5500),
-        BrandProductCategoryPriceVo(brandName="A", category = ProductCategoryType.BOTTOM.code, price = 4200),
-        BrandProductCategoryPriceVo(brandName="A", category = ProductCategoryType.SNEAKERS.code, price = 9000),
-        BrandProductCategoryPriceVo(brandName="A", category = ProductCategoryType.BAG.code, price = 2000),
-        BrandProductCategoryPriceVo(brandName="A", category = ProductCategoryType.CAP.code, price = 1700),
-        BrandProductCategoryPriceVo(brandName="A", category = ProductCategoryType.SOCKS.code, price = 1800),
-        BrandProductCategoryPriceVo(brandName="A", category = ProductCategoryType.ACCESSORY.code, price = 2300),
+        Catalog(brandId =1 ,brandName="A", productId = 1,productCategory = ProductCategoryType.TOP.code, productPrice = 11200),
+        Catalog(brandId =1 ,brandName="A", productId = 2,productCategory = ProductCategoryType.OUTER.code, productPrice = 5500),
+        Catalog(brandId =1 ,brandName="A", productId = 3,productCategory = ProductCategoryType.BOTTOM.code, productPrice = 4200),
+        Catalog(brandId =1 ,brandName="A", productId = 4,productCategory = ProductCategoryType.SNEAKERS.code, productPrice = 9000),
+        Catalog(brandId =1 ,brandName="A", productId = 5,productCategory = ProductCategoryType.BAG.code, productPrice = 2000),
+        Catalog(brandId =1 ,brandName="A", productId = 6,productCategory = ProductCategoryType.CAP.code, productPrice = 1700),
+        Catalog(brandId =1 ,brandName="A", productId = 7,productCategory = ProductCategoryType.SOCKS.code, productPrice = 1800),
+        Catalog(brandId =1 ,brandName="A", productId = 8,productCategory = ProductCategoryType.ACCESSORY.code, productPrice = 2300),
 
-        BrandProductCategoryPriceVo(brandName="B", category = ProductCategoryType.TOP.code, price = 10500),
-        BrandProductCategoryPriceVo(brandName="B", category = ProductCategoryType.OUTER.code, price = 5900),
-        BrandProductCategoryPriceVo(brandName="B", category = ProductCategoryType.BOTTOM.code, price = 3800),
-        BrandProductCategoryPriceVo(brandName="B", category = ProductCategoryType.SNEAKERS.code, price = 9100),
-        BrandProductCategoryPriceVo(brandName="B", category = ProductCategoryType.BAG.code, price = 2100),
-        BrandProductCategoryPriceVo(brandName="B", category = ProductCategoryType.CAP.code, price = 2000),
-        BrandProductCategoryPriceVo(brandName="B", category = ProductCategoryType.SOCKS.code, price = 2000),
-        BrandProductCategoryPriceVo(brandName="B", category = ProductCategoryType.ACCESSORY.code, price = 2200),
+        Catalog(brandId =2 ,brandName="B", productId = 9,productCategory = ProductCategoryType.TOP.code, productPrice = 10500),
+        Catalog(brandId =2 ,brandName="B", productId = 10,productCategory = ProductCategoryType.OUTER.code, productPrice = 5900),
+        Catalog(brandId =2 ,brandName="B", productId = 11,productCategory = ProductCategoryType.BOTTOM.code, productPrice = 3800),
+        Catalog(brandId =2 ,brandName="B", productId = 12,productCategory = ProductCategoryType.SNEAKERS.code, productPrice = 9100),
+        Catalog(brandId =2 ,brandName="B", productId = 13,productCategory = ProductCategoryType.BAG.code, productPrice = 2100),
+        Catalog(brandId =2 ,brandName="B", productId = 14,productCategory = ProductCategoryType.CAP.code, productPrice = 2000),
+        Catalog(brandId =2 ,brandName="B", productId = 15,productCategory = ProductCategoryType.SOCKS.code, productPrice = 2000),
+        Catalog(brandId =2 ,brandName="B", productId = 16,productCategory = ProductCategoryType.ACCESSORY.code, productPrice = 2200),
 
-        BrandProductCategoryPriceVo(brandName="C", category = ProductCategoryType.TOP.code, price = 10000),
-        BrandProductCategoryPriceVo(brandName="C", category = ProductCategoryType.OUTER.code, price = 6200),
-        BrandProductCategoryPriceVo(brandName="C", category = ProductCategoryType.BOTTOM.code, price = 3300),
-        BrandProductCategoryPriceVo(brandName="C", category = ProductCategoryType.SNEAKERS.code, price = 9200),
-        BrandProductCategoryPriceVo(brandName="C", category = ProductCategoryType.BAG.code, price = 2200),
-        BrandProductCategoryPriceVo(brandName="C", category = ProductCategoryType.CAP.code, price = 1900),
-        BrandProductCategoryPriceVo(brandName="C", category = ProductCategoryType.SOCKS.code, price = 2200),
-        BrandProductCategoryPriceVo(brandName="C", category = ProductCategoryType.ACCESSORY.code, price = 2100),
+        Catalog(brandId =3 ,brandName="C", productId = 17,productCategory = ProductCategoryType.TOP.code, productPrice = 10000),
+        Catalog(brandId =3 ,brandName="C", productId = 18,productCategory = ProductCategoryType.OUTER.code, productPrice = 6200),
+        Catalog(brandId =3 ,brandName="C", productId = 19,productCategory = ProductCategoryType.BOTTOM.code, productPrice = 3300),
+        Catalog(brandId =3 ,brandName="C", productId = 20,productCategory = ProductCategoryType.SNEAKERS.code, productPrice = 9200),
+        Catalog(brandId =3 ,brandName="C", productId = 21,productCategory = ProductCategoryType.BAG.code, productPrice = 2200),
+        Catalog(brandId =3 ,brandName="C", productId = 22,productCategory = ProductCategoryType.CAP.code, productPrice = 1900),
+        Catalog(brandId =3 ,brandName="C", productId = 23,productCategory = ProductCategoryType.SOCKS.code, productPrice = 2200),
+        Catalog(brandId =3 ,brandName="C", productId = 24,productCategory = ProductCategoryType.ACCESSORY.code, productPrice = 2100),
 
-        BrandProductCategoryPriceVo(brandName="D", category = ProductCategoryType.TOP.code, price = 10100),
-        BrandProductCategoryPriceVo(brandName="D", category = ProductCategoryType.OUTER.code, price = 5100),
-        BrandProductCategoryPriceVo(brandName="D", category = ProductCategoryType.BOTTOM.code, price = 3000),
-        BrandProductCategoryPriceVo(brandName="D", category = ProductCategoryType.SNEAKERS.code, price = 9500),
-        BrandProductCategoryPriceVo(brandName="D", category = ProductCategoryType.BAG.code, price = 2500),
-        BrandProductCategoryPriceVo(brandName="D", category = ProductCategoryType.CAP.code, price = 1500),
-        BrandProductCategoryPriceVo(brandName="D", category = ProductCategoryType.SOCKS.code, price = 2400),
-        BrandProductCategoryPriceVo(brandName="D", category = ProductCategoryType.ACCESSORY.code, price = 2000),
+        Catalog(brandId =4 ,brandName="D", productId = 25,productCategory = ProductCategoryType.TOP.code, productPrice = 10100),
+        Catalog(brandId =4 ,brandName="D", productId = 26,productCategory = ProductCategoryType.OUTER.code, productPrice = 5100),
+        Catalog(brandId =4 ,brandName="D", productId = 27,productCategory = ProductCategoryType.BOTTOM.code, productPrice = 3000),
+        Catalog(brandId =4 ,brandName="D", productId = 28,productCategory = ProductCategoryType.SNEAKERS.code, productPrice = 9500),
+        Catalog(brandId =4 ,brandName="D", productId = 29,productCategory = ProductCategoryType.BAG.code, productPrice = 2500),
+        Catalog(brandId =4 ,brandName="D", productId = 30,productCategory = ProductCategoryType.CAP.code, productPrice = 1500),
+        Catalog(brandId =4 ,brandName="D", productId = 31,productCategory = ProductCategoryType.SOCKS.code, productPrice = 2400),
+        Catalog(brandId =4 ,brandName="D", productId = 32,productCategory = ProductCategoryType.ACCESSORY.code, productPrice = 2000),
 
-        BrandProductCategoryPriceVo(brandName="E", category = ProductCategoryType.TOP.code, price = 10700),
-        BrandProductCategoryPriceVo(brandName="E", category = ProductCategoryType.OUTER.code, price = 5000),
-        BrandProductCategoryPriceVo(brandName="E", category = ProductCategoryType.BOTTOM.code, price = 3800),
-        BrandProductCategoryPriceVo(brandName="E", category = ProductCategoryType.SNEAKERS.code, price = 9900),
-        BrandProductCategoryPriceVo(brandName="E", category = ProductCategoryType.BAG.code, price = 2300),
-        BrandProductCategoryPriceVo(brandName="E", category = ProductCategoryType.CAP.code, price = 1800),
-        BrandProductCategoryPriceVo(brandName="E", category = ProductCategoryType.SOCKS.code, price = 2100),
-        BrandProductCategoryPriceVo(brandName="E", category = ProductCategoryType.ACCESSORY.code, price = 2100),
+        Catalog(brandId =5 ,brandName="E", productId = 33,productCategory = ProductCategoryType.TOP.code, productPrice = 10700),
+        Catalog(brandId =5 ,brandName="E", productId = 34,productCategory = ProductCategoryType.OUTER.code, productPrice = 5000),
+        Catalog(brandId =5 ,brandName="E", productId = 35,productCategory = ProductCategoryType.BOTTOM.code, productPrice = 3800),
+        Catalog(brandId =5 ,brandName="E", productId = 36,productCategory = ProductCategoryType.SNEAKERS.code, productPrice = 9900),
+        Catalog(brandId =5 ,brandName="E", productId = 37,productCategory = ProductCategoryType.BAG.code, productPrice = 2300),
+        Catalog(brandId =5 ,brandName="E", productId = 38,productCategory = ProductCategoryType.CAP.code, productPrice = 1800),
+        Catalog(brandId =5 ,brandName="E", productId = 39,productCategory = ProductCategoryType.SOCKS.code, productPrice = 2100),
+        Catalog(brandId =5 ,brandName="E", productId = 40,productCategory = ProductCategoryType.ACCESSORY.code, productPrice = 2100),
 
-        BrandProductCategoryPriceVo(brandName="F", category = ProductCategoryType.TOP.code, price = 11200),
-        BrandProductCategoryPriceVo(brandName="F", category = ProductCategoryType.OUTER.code, price = 7200),
-        BrandProductCategoryPriceVo(brandName="F", category = ProductCategoryType.BOTTOM.code, price = 4000),
-        BrandProductCategoryPriceVo(brandName="F", category = ProductCategoryType.SNEAKERS.code, price = 9300),
-        BrandProductCategoryPriceVo(brandName="F", category = ProductCategoryType.BAG.code, price = 2100),
-        BrandProductCategoryPriceVo(brandName="F", category = ProductCategoryType.CAP.code, price = 1600),
-        BrandProductCategoryPriceVo(brandName="F", category = ProductCategoryType.SOCKS.code, price = 2300),
-        BrandProductCategoryPriceVo(brandName="F", category = ProductCategoryType.ACCESSORY.code, price = 1900),
+        Catalog(brandId =6 ,brandName="F", productId = 41,productCategory = ProductCategoryType.TOP.code, productPrice = 11200),
+        Catalog(brandId =6 ,brandName="F", productId = 42,productCategory = ProductCategoryType.OUTER.code, productPrice = 7200),
+        Catalog(brandId =6 ,brandName="F", productId = 43,productCategory = ProductCategoryType.BOTTOM.code, productPrice = 4000),
+        Catalog(brandId =6 ,brandName="F", productId = 44,productCategory = ProductCategoryType.SNEAKERS.code, productPrice = 9300),
+        Catalog(brandId =6 ,brandName="F", productId = 45,productCategory = ProductCategoryType.BAG.code, productPrice = 2100),
+        Catalog(brandId =6 ,brandName="F", productId = 46,productCategory = ProductCategoryType.CAP.code, productPrice = 1600),
+        Catalog(brandId =6 ,brandName="F", productId = 47,productCategory = ProductCategoryType.SOCKS.code, productPrice = 2300),
+        Catalog(brandId =6 ,brandName="F", productId = 48,productCategory = ProductCategoryType.ACCESSORY.code, productPrice = 1900),
 
-        BrandProductCategoryPriceVo(brandName="G", category = ProductCategoryType.TOP.code, price = 10500),
-        BrandProductCategoryPriceVo(brandName="G", category = ProductCategoryType.OUTER.code, price = 5800),
-        BrandProductCategoryPriceVo(brandName="G", category = ProductCategoryType.BOTTOM.code, price = 3900),
-        BrandProductCategoryPriceVo(brandName="G", category = ProductCategoryType.SNEAKERS.code, price = 9000),
-        BrandProductCategoryPriceVo(brandName="G", category = ProductCategoryType.BAG.code, price = 2200),
-        BrandProductCategoryPriceVo(brandName="G", category = ProductCategoryType.CAP.code, price = 1700),
-        BrandProductCategoryPriceVo(brandName="G", category = ProductCategoryType.SOCKS.code, price = 2100),
-        BrandProductCategoryPriceVo(brandName="G", category = ProductCategoryType.ACCESSORY.code, price = 2000),
+        Catalog(brandId =7 ,brandName="G", productId = 49,productCategory = ProductCategoryType.TOP.code, productPrice = 10500),
+        Catalog(brandId =7 ,brandName="G", productId = 50,productCategory = ProductCategoryType.OUTER.code, productPrice = 5800),
+        Catalog(brandId =7 ,brandName="G", productId = 51,productCategory = ProductCategoryType.BOTTOM.code, productPrice = 3900),
+        Catalog(brandId =7 ,brandName="G", productId = 52,productCategory = ProductCategoryType.SNEAKERS.code, productPrice = 9000),
+        Catalog(brandId =7 ,brandName="G", productId = 53,productCategory = ProductCategoryType.BAG.code, productPrice = 2200),
+        Catalog(brandId =7 ,brandName="G", productId = 54,productCategory = ProductCategoryType.CAP.code, productPrice = 1700),
+        Catalog(brandId =7 ,brandName="G", productId = 55,productCategory = ProductCategoryType.SOCKS.code, productPrice = 2100),
+        Catalog(brandId =7 ,brandName="G", productId = 56,productCategory = ProductCategoryType.ACCESSORY.code, productPrice = 2000),
 
-        BrandProductCategoryPriceVo(brandName="H", category = ProductCategoryType.TOP.code, price = 10800),
-        BrandProductCategoryPriceVo(brandName="H", category = ProductCategoryType.OUTER.code, price = 6300),
-        BrandProductCategoryPriceVo(brandName="H", category = ProductCategoryType.BOTTOM.code, price = 3100),
-        BrandProductCategoryPriceVo(brandName="H", category = ProductCategoryType.SNEAKERS.code, price = 9700),
-        BrandProductCategoryPriceVo(brandName="H", category = ProductCategoryType.BAG.code, price = 2100),
-        BrandProductCategoryPriceVo(brandName="H", category = ProductCategoryType.CAP.code, price = 1600),
-        BrandProductCategoryPriceVo(brandName="H", category = ProductCategoryType.SOCKS.code, price = 2000),
-        BrandProductCategoryPriceVo(brandName="H", category = ProductCategoryType.ACCESSORY.code, price = 2000),
+        Catalog(brandId =8 ,brandName="H", productId = 57,productCategory = ProductCategoryType.TOP.code, productPrice = 10800),
+        Catalog(brandId =8 ,brandName="H", productId = 58,productCategory = ProductCategoryType.OUTER.code, productPrice = 6300),
+        Catalog(brandId =8 ,brandName="H", productId = 59,productCategory = ProductCategoryType.BOTTOM.code, productPrice = 3100),
+        Catalog(brandId =8 ,brandName="H", productId = 60,productCategory = ProductCategoryType.SNEAKERS.code, productPrice = 9700),
+        Catalog(brandId =8 ,brandName="H", productId = 61,productCategory = ProductCategoryType.BAG.code, productPrice = 2100),
+        Catalog(brandId =8 ,brandName="H", productId = 62,productCategory = ProductCategoryType.CAP.code, productPrice = 1600),
+        Catalog(brandId =8 ,brandName="H", productId = 63,productCategory = ProductCategoryType.SOCKS.code, productPrice = 2000),
+        Catalog(brandId =8 ,brandName="H", productId = 64,productCategory = ProductCategoryType.ACCESSORY.code, productPrice = 2000),
 
-        BrandProductCategoryPriceVo(brandName="I", category = ProductCategoryType.TOP.code, price = 11400),
-        BrandProductCategoryPriceVo(brandName="I", category = ProductCategoryType.OUTER.code, price = 6700),
-        BrandProductCategoryPriceVo(brandName="I", category = ProductCategoryType.BOTTOM.code, price = 3200),
-        BrandProductCategoryPriceVo(brandName="I", category = ProductCategoryType.SNEAKERS.code, price = 9500),
-        BrandProductCategoryPriceVo(brandName="I", category = ProductCategoryType.BAG.code, price = 2400),
-        BrandProductCategoryPriceVo(brandName="I", category = ProductCategoryType.CAP.code, price = 1700),
-        BrandProductCategoryPriceVo(brandName="I", category = ProductCategoryType.SOCKS.code, price = 1700),
-        BrandProductCategoryPriceVo(brandName="I", category = ProductCategoryType.ACCESSORY.code, price = 2400),
+        Catalog(brandId =9 ,brandName="I", productId = 65,productCategory = ProductCategoryType.TOP.code, productPrice = 11400),
+        Catalog(brandId =9 ,brandName="I", productId = 66,productCategory = ProductCategoryType.OUTER.code, productPrice = 6700),
+        Catalog(brandId =9 ,brandName="I", productId = 67,productCategory = ProductCategoryType.BOTTOM.code, productPrice = 3200),
+        Catalog(brandId =9 ,brandName="I", productId = 68,productCategory = ProductCategoryType.SNEAKERS.code, productPrice = 9500),
+        Catalog(brandId =9 ,brandName="I", productId = 69,productCategory = ProductCategoryType.BAG.code, productPrice = 2400),
+        Catalog(brandId =9 ,brandName="I", productId = 70,productCategory = ProductCategoryType.CAP.code, productPrice = 1700),
+        Catalog(brandId =9 ,brandName="I", productId = 71,productCategory = ProductCategoryType.SOCKS.code, productPrice = 1700),
+        Catalog(brandId =9 ,brandName="I", productId = 72,productCategory = ProductCategoryType.ACCESSORY.code, productPrice = 2400),
     )
     val sortedList = originalList.sortedWith(
-        compareBy<BrandProductCategoryPriceVo> { it.category }
-            .thenBy { it.price }
+        compareBy<Catalog> { it.productCategory }
+            .thenBy { it.productPrice }
     )
     return sortedList
 }

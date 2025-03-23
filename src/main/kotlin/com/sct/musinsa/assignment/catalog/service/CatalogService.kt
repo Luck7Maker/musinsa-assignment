@@ -5,6 +5,9 @@ import com.sct.musinsa.assignment.catalog.controller.payload.BestPriceCatalogRes
 import com.sct.musinsa.assignment.catalog.controller.payload.CheapestAndMostExpensiveBrandByCategoryResponse
 import com.sct.musinsa.assignment.catalog.persistence.domain.CatalogAggregate
 import com.sct.musinsa.assignment.catalog.persistence.domain.code.ProductCategoryType
+import com.sct.musinsa.assignment.catalog.service.dto.BrandPriceDto
+import com.sct.musinsa.assignment.catalog.service.dto.BrandProductCategoryPriceDto
+import com.sct.musinsa.assignment.catalog.service.dto.CategoryPriceDto
 import com.sct.musinsa.assignment.common.http.exception.GlobalException
 import com.sct.musinsa.assignment.common.http.response.Response
 import org.springframework.stereotype.Service
@@ -18,15 +21,17 @@ class CatalogService(private val catalogAggregate: CatalogAggregate) {
             .takeIf { it.isNotEmpty() }
             ?: throw GlobalException(Response.ResponseCode.NO_SUCH_ELEMENT)
 
-        var currentCategory = productPriceList.last().category
+        var currentCategory = productPriceList.last().productCategory
 
         val bestPriceList = productPriceList.filter { productPrice ->
-            if (currentCategory != productPrice.category) {
-                currentCategory = productPrice.category
+            if (currentCategory != productPrice.productCategory) {
+                currentCategory = productPrice.productCategory
                 true
             } else {
                 false
             }
+        }.map { catalog->
+            BrandProductCategoryPriceDto.from(catalog)
         }
 
         return BestPriceCatalogResponse(bestPriceList)
@@ -36,7 +41,9 @@ class CatalogService(private val catalogAggregate: CatalogAggregate) {
         val bestPriceBrand = catalogAggregate.findAllBrandWithSumAllCategoryPriceOrderByPrice().firstOrNull()
             ?: throw GlobalException(Response.ResponseCode.NO_SUCH_ELEMENT)
 
-        val bestPriceBrandAndAllCategories = catalogAggregate.findAllCategoryPriceByBrandId(bestPriceBrand.brandId)
+        val bestPriceBrandAndAllCategories = catalogAggregate.findAllCategoryPriceByBrandId(bestPriceBrand.brandId).map {
+            CategoryPriceDto.from(it)
+        }
 
         return BestPriceBrandForAllCategoriesResponse(bestPriceBrand.brandName, bestPriceBrandAndAllCategories)
     }
@@ -44,6 +51,9 @@ class CatalogService(private val catalogAggregate: CatalogAggregate) {
     fun findCheapestAndMostExpensiveBrandByCategory(productCategoryType: ProductCategoryType): CheapestAndMostExpensiveBrandByCategoryResponse{
         val allBrandPrices = catalogAggregate.findAllBrandPriceByCategoryOrderByPrice(productCategoryType)
             .takeIf { it.isNotEmpty() }
+            ?.map {
+                BrandPriceDto.from(it)
+            }
             ?: throw GlobalException(Response.ResponseCode.NO_SUCH_ELEMENT)
 
         return CheapestAndMostExpensiveBrandByCategoryResponse(productCategoryType.koVal, allBrandPrices.first(), allBrandPrices.last())
