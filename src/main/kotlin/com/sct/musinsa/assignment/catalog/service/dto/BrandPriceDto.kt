@@ -1,18 +1,17 @@
-package com.sct.musinsa.assignment.catalog.persistence.repository.vo
+package com.sct.musinsa.assignment.catalog.service.dto
 
-import com.fasterxml.jackson.annotation.JsonIgnore
 import com.querydsl.core.annotations.QueryProjection
-import com.sct.musinsa.assignment.catalog.persistence.domain.code.ProductCategoryType
+import com.sct.musinsa.assignment.catalog.persistence.domain.Catalog
 import java.util.*
 
-class BrandPriceVo
+class BrandPriceDto
 @QueryProjection constructor(
     var brandName: String = "",
     val price: Long,
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
-        if (other !is BrandPriceVo) return false
+        if (other !is BrandPriceDto) return false
 
         return brandName.trim() == other.brandName.trim() &&
                 price == other.price
@@ -20,5 +19,14 @@ class BrandPriceVo
 
     override fun hashCode(): Int {
         return Objects.hash(this.brandName.trim(), price)
+    }
+
+    companion object {
+        fun from(catalog: Catalog): BrandPriceDto {
+            return BrandPriceDto(
+                brandName = catalog.brandName,
+                price = catalog.productPrice
+            )
+        }
     }
 }

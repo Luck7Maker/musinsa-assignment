@@ -8,9 +8,6 @@ import com.sct.musinsa.assignment.catalog.persistence.repository.CatalogBrandRep
 import com.sct.musinsa.assignment.catalog.persistence.repository.CatalogProductRepository
 import com.sct.musinsa.assignment.catalog.persistence.repository.dsl.CategoryDslRepository
 import com.sct.musinsa.assignment.catalog.persistence.repository.vo.BrandAllCategoryPriceVo
-import com.sct.musinsa.assignment.catalog.persistence.repository.vo.BrandPriceVo
-import com.sct.musinsa.assignment.catalog.persistence.repository.vo.BrandProductCategoryPriceVo
-import com.sct.musinsa.assignment.catalog.persistence.repository.vo.CategoryPriceVo
 
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -67,7 +64,7 @@ class CatalogAggregate(
         catalogProductRepository.deleteById(productId)
     }
 
-    fun findAllCategoryWithPriceOrderByCategoryAndPrice(): List<BrandProductCategoryPriceVo> {
+    fun findAllCategoryWithPriceOrderByCategoryAndPrice(): List<Catalog> {
         val productPriceList = categoryDslRepository.findAllCategoryWithPriceOrderByCategoryAndPrice()
         return productPriceList
     }
@@ -76,11 +73,11 @@ class CatalogAggregate(
         val brandAllCategoryPriceList = categoryDslRepository.findAllBrandWithSumAllCategoryPriceOrderByPrice()
         return brandAllCategoryPriceList
     }
-    fun findAllCategoryPriceByBrandId(brandId: Long): List<CategoryPriceVo> {
+    fun findAllCategoryPriceByBrandId(brandId: Long): List<Catalog> {
         val brandAllCategoryPriceList = categoryDslRepository.findAllCategoryPriceByBrandId(brandId)
         return brandAllCategoryPriceList
     }
-    fun findAllBrandPriceByCategoryOrderByPrice(productCategoryType: ProductCategoryType): List<BrandPriceVo>{
+    fun findAllBrandPriceByCategoryOrderByPrice(productCategoryType: ProductCategoryType): List<Catalog>{
         val brandPriceList = categoryDslRepository.findAllBrandPriceByCategory(productCategoryType)
         return brandPriceList
     }
